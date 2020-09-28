@@ -28,6 +28,6 @@ jobs:
         REACT_APP_FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID_DEV }}
     - uses: w9jds/firebase-action@master
       with:
-        args: deploy
+        args: deploy use prod
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}
