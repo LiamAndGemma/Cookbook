@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "liamandgemma-cookbook-dev",
+    "prod": "liamandgemma-cookbook-146ca"
+  }
+}
