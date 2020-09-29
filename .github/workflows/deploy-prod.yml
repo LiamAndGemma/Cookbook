@@ -21,15 +21,31 @@ jobs:
       REACT_APP_FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID_PROD }}
 
     steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
+    - name: Use Checkout
+      uses: actions/checkout@master
+    - name: Setup Node
+      uses: actions/setup-node@master
       with:
         node-version: '10.x'
-    - run: yarn install
-    - run: yarn run build
-    - uses: w9jds/firebase-action@v1.3.1
+    - name: Install functions npm packages
+      run: |
+        cd functions
+        yarn install
+    - name:  Deploy Firebase Functions
+      uses: w9jds/firebase-action@master
       with:
-        args: deploy
+          args: deploy --only functions
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_PROD }}
+        PROJECT_ID: prod
+    - name: Install project npm packages
+      run: |
+        yarn install
+        yarn run build
+    - name: Deploy Firebase Hosting, Database, Storage, Firestore
+      uses: w9jds/firebase-action@master
+      with:
+        args: deploy --only hosting,database,storage,firestore
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_PROD }}
         PROJECT_ID: prod
