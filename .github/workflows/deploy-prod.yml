@@ -29,6 +29,7 @@ jobs:
         node-version: '10.x'
     - name: Install functions npm packages
       run: |
+        yarn install
         cd functions
         yarn install
     - name:  Deploy Firebase Functions
