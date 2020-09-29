@@ -27,18 +27,18 @@ jobs:
       uses: actions/setup-node@master
       with:
         node-version: '10.x'
-    - name: Install functions npm packages
-      run: |
-        yarn install
-        cd functions
-        yarn install
-    - name:  Deploy Firebase Functions
-      uses: w9jds/firebase-action@master
-      with:
-          args: deploy --only functions
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}
-        PROJECT_ID: default
+    # - name: Install functions npm packages
+    #   run: |
+    #     yarn install
+    #     cd functions
+    #     yarn install
+    # - name:  Deploy Firebase Functions
+    #   uses: w9jds/firebase-action@master
+    #   with:
+    #       args: deploy --only functions
+    #   env:
+    #     FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}
+    #     PROJECT_ID: default
     - name: Install project npm packages
       run: |
         yarn install
